@@ -1,0 +1,50 @@
+/* Lógico_1: */
+
+CREATE TABLE Livro (
+    Codigo_ VARCHAR PRIMARY KEY,
+    Genero_ VARCHAR,
+    Preco NUMERIC,
+    Titulo_ VARCHAR
+);
+
+CREATE TABLE Cliente (
+    cpf_cliente VARCHAR PRIMARY KEY,
+    data_nasc_cliente DATE,
+    telefone_cliente VARCHAR,
+    nome_cliente VARCHAR
+);
+
+CREATE TABLE Funcionario (
+    nome_funcionario VARCHAR,
+    cpf_funcionario VARCHAR PRIMARY KEY,
+    telefone_funcionario VARCHAR,
+    data_nasc_funcionario DATE
+);
+
+CREATE TABLE Cliente (
+    data_nasc_cliente DATE,
+    cpf_cliente VARCHAR PRIMARY KEY,
+    nome_cliente VARCHAR,
+    telefone_cliente VARCHAR
+);
+
+CREATE TABLE aluga_Livro_Cliente_Funcionario (
+    fk_Livro_Codigo_ VARCHAR,
+    fk_Cliente_cpf_cliente VARCHAR,
+    fk_Funcionario_cpf_funcionario VARCHAR
+);
+ 
+ALTER TABLE aluga_Livro_Cliente_Funcionario ADD CONSTRAINT FK_aluga_Livro_Cliente_Funcionario_1
+    FOREIGN KEY (fk_Livro_Codigo_)
+    REFERENCES Livro (Codigo_)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE aluga_Livro_Cliente_Funcionario ADD CONSTRAINT FK_aluga_Livro_Cliente_Funcionario_2
+    FOREIGN KEY (fk_Cliente_cpf_cliente)
+    REFERENCES Cliente (cpf_cliente)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE aluga_Livro_Cliente_Funcionario ADD CONSTRAINT FK_aluga_Livro_Cliente_Funcionario_3
+    FOREIGN KEY (fk_Funcionario_cpf_funcionario)
+    REFERENCES Funcionario (cpf_funcionario)
+    ON DELETE NO ACTION;
